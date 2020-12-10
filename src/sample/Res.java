@@ -45,6 +45,7 @@ public class Res {
     public static String name = "Name: ";
     public static String score = "Score: ";
     public static String textDie = "You die!!!!";
+    public static String textWin = "You win!!!!";
     public static String[] nameSkill = {"[Q] Bio bomb", "[W] Enduring", "[E] Energy shield", "[R] Big bang"};
     public static String[] infoSkill = {"+10% dame, small explosion, -20MP", "HP+10%/5s", "Immune to damage, -40%MP", "Destroy all, -80%HP, -55%MP"};
 

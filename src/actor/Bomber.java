@@ -80,7 +80,7 @@ public class Bomber extends Actor {
 
     public boolean pickItem(Item item) {
         Rectangle me =
-                new Rectangle(x, y - 10, this.getWidth(), this.getHeight() - 10);
+                new Rectangle(x + 1, y - 10, this.getWidth() - 2, this.getHeight() - 10);
         if (me.intersects(item.getX(), item.getY(), item.getWidth(), item.getHeight())) {
             if (item.getType() == 0) {
                 this.lvHP += 10;

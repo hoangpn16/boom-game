@@ -201,11 +201,11 @@ public class Mob extends Actor {
             flag = true;
         }
         Rectangle mobR =
-                new Rectangle(x -1, y - 11, this.getWidth() -2, this.getHeight() - 12);
-        if(mobR.intersects(cx,cy -40,40,120)){
+                new Rectangle(x - 1, y - 11, this.getWidth() - 2, this.getHeight() - 12);
+        if (mobR.intersects(cx, cy - 40, 40, 120)) {
             flag = true;
         }
-        if(mobR.intersects(cx- 40, cy ,120,40)){
+        if (mobR.intersects(cx - 40, cy, 120, 40)) {
             flag = true;
         }
 

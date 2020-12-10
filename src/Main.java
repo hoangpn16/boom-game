@@ -5,9 +5,6 @@ import score.HighScore;
 import screen.MainScr;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
 
 public class Main extends Application {
 
@@ -21,12 +18,11 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-
         Main.loadData();
         launch(args);
     }
 
-    public static void loadData() throws IOException {
+    public static void loadData() {
         String appData = System.getProperty("user.home") + "\\AppData\\LocalLow";
         File folder = new File(appData, "\\BoomberMan");
         if (!folder.exists()) {

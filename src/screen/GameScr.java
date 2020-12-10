@@ -96,6 +96,11 @@ public class GameScr {
         labelDie.setStyle("-fx-text-fill: #FF0000;");
         labelDie.setTranslateY(-35);
 
+        Label labelWin = new Label(Res.textWin);
+        labelWin.setFont(Font.loadFont(GameScr.class.getResource(Res.FONT).toString(), 30));
+        labelWin.setStyle("-fx-text-fill: #FF0000;");
+        labelWin.setTranslateY(-35);
+
         Button btnOK = new Button("OK");
         btnOK.setFont(Font.loadFont(GameScr.class.getResource(Res.FONT).toString(), 35));
         btnOK.setStyle("-fx-background-color:transparent; -fx-text-fill: #7FFF00;   -fx-background-radius:20");
@@ -104,9 +109,6 @@ public class GameScr {
         btnOK.setOnMouseExited(t -> btnOK.setStyle("-fx-background-color:transparent; -fx-text-fill: #7FFF00"));
         btnOK.setTranslateY(50);
         btnOK.setMaxWidth(200);
-
-
-        anDie.getChildren().addAll(labelDie, btnOK);
 
 
         circle.setLayoutX(bomber.getX());
@@ -152,26 +154,26 @@ public class GameScr {
 //                    bomber.move(bomber.getX(), bomber.getY() + 2);
 //                }
 
-                if (GameCanvas.gameTicks % 1500 == 0) {
-                    for (int i = 0; i < 15; i++) {
-                        for (int j = 0; j < 15; j++) {
-                            if (arrayMob[i][j]) {
-                                int hp = ((int) GameCanvas.gameTicks / 1500) * 40 + 80;
-                                Mob mob = new Mob(Images.img_mob[Mob.CENTER], 40 * i, 40 * j, hp);
-                                vMob.add(mob);
-                            }
-                            if (arrayItem[i][j]) {
-                                Item item = new Item(40 * i, 40 * j, new Random().nextInt(2));
-                                vItem.add(item);
-                            }
-                        }
-                    }
-
-                    for (Mob mob : vMob
-                    ) {
-                        mob.update();
-                    }
-                }
+//                if (GameCanvas.gameTicks % 1500 == 0) {
+//                    for (int i = 0; i < 15; i++) {
+//                        for (int j = 0; j < 15; j++) {
+//                            if (arrayMob[i][j]) {
+//                                int hp = ((int) GameCanvas.gameTicks / 1500) * 40 + 80;
+//                                Mob mob = new Mob(Images.img_mob[Mob.CENTER], 40 * i, 40 * j, hp);
+//                                vMob.add(mob);
+//                            }
+//                            if (arrayItem[i][j]) {
+//                                Item item = new Item(40 * i, 40 * j, new Random().nextInt(2));
+//                                vItem.add(item);
+//                            }
+//                        }
+//                    }
+//
+//                    for (Mob mob : vMob
+//                    ) {
+//                        mob.update();
+//                    }
+//                }
 
                 g.clearRect(0, 0, GameCanvas.GAME_WIDTH, GameCanvas.GAME_HEIGHT);
 
@@ -212,9 +214,18 @@ public class GameScr {
                 if (bomber.isDie() && !bomberDie) {
                     bomber.setDead(true);
                     bomber.setImg(Images.img_Bomber[0]);
+                    anDie.getChildren().addAll(labelDie, btnOK);
                     anchorPane.getChildren().addAll(anDie);
                     bomberDie = true;
                 }
+
+                if (vMob.size() == 0 && !bomberDie) {
+                    bomber.setDead(true);
+                    anDie.getChildren().addAll(labelWin, btnOK);
+                    anchorPane.getChildren().addAll(anDie);
+                    bomberDie = true;
+                }
+
                 Skill[] skill = bomber.getSkills();
                 if (currentTime - currentTimeMillis > 1000) {
                     if (!bomber.isDead()) {
@@ -311,7 +322,7 @@ public class GameScr {
 //                            xMove += bomber.getSpeed();
 //                        }
 
-                       bomber.changeDirection(Bomber.RIGHT);
+                        bomber.changeDirection(Bomber.RIGHT);
                         bomber.move(bomber.getX() + bomber.getSpeed(), bomber.getY());
                         break;
                     case LEFT:
